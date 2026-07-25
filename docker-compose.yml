@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: negin-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: neginborj
+      POSTGRES_USER: negin
+      POSTGRES_PASSWORD: negin_secret
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U negin -d neginborj"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: deps
+    container_name: negin-web
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      DATABASE_URI: postgresql://negin:negin_secret@postgres:5432/neginborj
+      PAYLOAD_SECRET: negin-borj-ghaem-local-dev-secret-key
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+      SMTP_HOST: ${SMTP_HOST:-smtp.gmail.com}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      RFQ_EMAIL_TO: ${RFQ_EMAIL_TO:-info@neginborj.com}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:

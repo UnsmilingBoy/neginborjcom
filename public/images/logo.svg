@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" fill="none">
+  <rect width="400" height="120" rx="8" fill="#0F172A"/>
+  <rect x="8" y="8" width="104" height="104" rx="4" fill="#F59E0B"/>
+  <text x="60" y="72" text-anchor="middle" fill="#0F172A" font-family="Arial, sans-serif" font-weight="800" font-size="42">N</text>
+  <text x="130" y="52" fill="#FFFFFF" font-family="Arial, sans-serif" font-weight="700" font-size="24">نگین برج قائم</text>
+  <text x="130" y="82" fill="#94A3B8" font-family="Arial, sans-serif" font-weight="400" font-size="14">NEGIN BORJ GHAEM</text>
+  <text x="130" y="102" fill="#64748B" font-family="Arial, sans-serif" font-weight="400" font-size="11">گروه صنعتی</text>
+</svg>
