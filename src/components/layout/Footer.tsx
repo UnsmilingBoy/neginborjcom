@@ -19,7 +19,7 @@ const services = [
 
 export function Footer() {
   return (
-    <footer className="bg-charcoal border-t border-slate-700/50">
+    <footer className="bg-surface-dark border-t border-slate-700/50">
       <Container>
         <div className="py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}

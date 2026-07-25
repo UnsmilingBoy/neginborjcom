@@ -17,7 +17,7 @@ export function FormProgress({ currentStep, steps }: FormProgressProps) {
               index < currentStep
                 ? "bg-amber-brand text-charcoal"
                 : index === currentStep
-                  ? "bg-charcoal text-white ring-2 ring-amber-brand"
+                  ? "bg-surface-dark text-white ring-2 ring-amber-brand"
                   : "bg-muted text-slate-400"
             }`}
           >

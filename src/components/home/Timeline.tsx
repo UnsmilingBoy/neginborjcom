@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Container } from "@/components/layout/Container";
 import { SectionHeader } from "@/components/SectionHeader";
-import { Calendar, Factory } from "lucide-react";
+import { Calendar, Factory, ArrowLeft } from "lucide-react";
 
 const milestones = [
   {
@@ -13,6 +13,7 @@ const milestones = [
     description:
       "اولین کارخانه تولید اسکلت فلزی در شهر بشل، مازندران با هدف تأمین نیازهای صنعتی منطقه تأسیس شد.",
     side: "right",
+    icon: Factory,
   },
   {
     year: "۱۳۹۴",
@@ -21,22 +22,36 @@ const milestones = [
     description:
       "دومین کارخانه در شهر ساری با ظرفیت تولید بالاتر و ماشین‌آلات پیشرفته‌تر راه‌اندازی شد.",
     side: "left",
+    icon: Factory,
   },
 ];
 
 export function Timeline() {
   return (
-    <section className="py-20 bg-background">
-      <Container>
+    <section className="relative py-24 bg-background overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="timeline-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 0 20 L 20 0 L 40 20 L 20 40 Z" fill="none" stroke="#F59E0B" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#timeline-pattern)" />
+        </svg>
+      </div>
+
+      <Container className="relative">
         <SectionHeader
           title="مسیر پیشرفت"
           subtitle="از تأسیس تا توسعه، مسیر رشد گروه صنعتی نگین برج قائم"
         />
-        <div className="relative mt-16">
-          {/* Center line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-amber-brand/20 -translate-x-1/2 hidden md:block" />
 
-          <div className="space-y-12">
+        <div className="relative mt-20">
+          {/* Center line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-amber-brand/0 via-amber-brand/30 to-amber-brand/0 -translate-x-1/2 hidden md:block" />
+
+          <div className="space-y-16">
             {milestones.map((milestone, index) => (
               <motion.div
                 key={milestone.yearEn}
@@ -50,31 +65,47 @@ export function Timeline() {
               >
                 {/* Content card */}
                 <div className="flex-1 w-full">
-                  <div className="p-6 rounded-xl border border-border bg-card hover:shadow-lg transition-shadow">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-brand/10">
-                        <Calendar className="h-5 w-5 text-amber-brand" />
-                      </div>
-                      <div>
-                        <span className="text-2xl font-extrabold text-amber-brand">
-                          {milestone.year}
-                        </span>
-                        <span className="text-sm text-slate-400 mr-2">
-                          ({milestone.yearEn})
-                        </span>
-                      </div>
+                  <div className="group relative p-8 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-xl hover:shadow-amber-brand/5 transition-all duration-500">
+                    {/* Year badge */}
+                    <div className="absolute -top-4 left-8 px-4 py-1.5 bg-amber-brand rounded-full">
+                      <span className="text-sm font-bold text-charcoal">
+                        {milestone.year}
+                      </span>
                     </div>
-                    <h3 className="text-lg font-bold text-charcoal mb-2">
-                      {milestone.title}
-                    </h3>
-                    <p className="text-sm text-slate-custom leading-relaxed">
-                      {milestone.description}
-                    </p>
+
+                    {/* Content */}
+                    <div className="mt-2">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-brand/10 to-amber-brand/5">
+                          <milestone.icon className="h-6 w-6 text-amber-brand" />
+                        </div>
+                        <div>
+                          <span className="text-xs text-slate-400 block">
+                            {milestone.yearEn}
+                          </span>
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold text-charcoal mb-3">
+                        {milestone.title}
+                      </h3>
+                      <p className="text-slate-custom leading-relaxed">
+                        {milestone.description}
+                      </p>
+                    </div>
+
+                    {/* Hover accent */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-brand/0 via-amber-brand to-amber-brand/0 rounded-b-2xl scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                   </div>
                 </div>
 
                 {/* Center dot */}
-                <div className="hidden md:flex h-5 w-5 rounded-full bg-amber-brand border-4 border-background z-10 shrink-0" />
+                <div className="hidden md:flex relative z-10 shrink-0">
+                  <div className="h-6 w-6 rounded-full bg-amber-brand flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-background" />
+                  </div>
+                  {/* Pulse effect */}
+                  <div className="absolute inset-0 h-6 w-6 rounded-full bg-amber-brand animate-ping opacity-20" />
+                </div>
 
                 {/* Empty space for alignment */}
                 <div className="flex-1 hidden md:block" />
