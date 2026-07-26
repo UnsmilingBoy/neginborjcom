@@ -7,7 +7,9 @@ import { Projects } from "./collections/Projects";
 import { Machinery } from "./collections/Machinery";
 import { Certifications } from "./collections/Certifications";
 import { RFQSubmissions } from "./collections/RFQSubmissions";
+import { JobApplications } from "./collections/JobApplications";
 import { Media } from "./collections/Media";
+import { ResumeFiles } from "./collections/ResumeFiles";
 
 export default buildConfig({
   admin: {
@@ -16,7 +18,16 @@ export default buildConfig({
       baseDir: path.resolve(__dirname),
     },
   },
-  collections: [Users, Projects, Machinery, Certifications, RFQSubmissions, Media],
+  collections: [
+    Users,
+    Projects,
+    Machinery,
+    Certifications,
+    RFQSubmissions,
+    JobApplications,
+    ResumeFiles,
+    Media,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

@@ -1,12 +1,34 @@
+import type { Metadata } from "next";
+import { Vazirmatn } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import "../globals.css";
+
+const vazirmatn = Vazirmatn({
+  variable: "--font-vazirmatn",
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "گروه صنعتی نگین برج قائم | Negin Borj Ghaem Industrial Group",
+  description:
+    "ساخت و نصب اسکلت فلزی سنگین، سوله صنعتی، پل‌های فلزی و سازه‌های پالایشگاهی | تولید ۶۰,۰۰۰+ تن فولاد",
+};
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <Navbar />
-      <main className="flex-1">{children}</main>
-      <Footer />
-    </>
+    <html
+      lang="fa"
+      dir="rtl"
+      className={`app-shell ${vazirmatn.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">
+        <Navbar />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
+    </html>
   );
 }

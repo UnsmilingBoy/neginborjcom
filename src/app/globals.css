@@ -122,14 +122,18 @@
 }
 
 @layer base {
-  * {
+  *,
+  *::before,
+  *::after {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
-    direction: rtl;
-  }
+}
+
+/* App-specific base styles — scoped to avoid overriding Payload admin */
+.app-shell body {
+  @apply bg-background text-foreground;
+}
+.app-shell html {
+  @apply font-sans;
+  direction: rtl;
 }

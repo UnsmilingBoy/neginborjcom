@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/projects", label: "پروژه‌ها" },
   { href: "/machinery", label: "ماشین‌آلات" },
   { href: "/about", label: "درباره ما" },
+  { href: "/recruitment", label: "جذب نیرو" },
   { href: "/rfq", label: "درخواست پیش‌فاکتور" },
 ];
 
