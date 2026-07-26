@@ -20,7 +20,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-charcoal/95 backdrop-blur supports-[backdrop-filter]:bg-charcoal/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-surface-dark/95 backdrop-blur supports-[backdrop-filter]:bg-surface-dark/60">
       <Container>
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -64,7 +64,7 @@ export function Navbar() {
                   </button>
                 }
               />
-              <SheetContent side="right" className="w-72 bg-charcoal border-slate-700">
+              <SheetContent side="right" className="w-72 bg-surface-dark border-slate-700">
                 <div className="flex flex-col gap-4 mt-8">
                   {navLinks.map((link) => (
                     <Link

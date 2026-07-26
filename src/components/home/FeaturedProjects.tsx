@@ -5,7 +5,7 @@ import { Container } from "@/components/layout/Container";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft } from "lucide-react";
 
 // Demo data — will be replaced with Payload CMS data
 const demoProjects = [
@@ -52,8 +52,11 @@ const categoryLabels: Record<string, string> = {
 
 export function FeaturedProjects() {
   return (
-    <section className="py-20 bg-muted/30">
-      <Container>
+    <section className="relative py-24 bg-muted/20 overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-amber-brand/3 to-transparent" />
+
+      <Container className="relative">
         <SectionHeader
           title="پروژه‌های شاخص"
           subtitle="نگاهی به برخی از پروژه‌های موفق اجرا شده توسط گروه صنعتی نگین برج قائم"
@@ -79,13 +82,13 @@ export function FeaturedProjects() {
             </motion.div>
           ))}
         </div>
-        <div className="text-center mt-10">
+        <div className="text-center mt-12">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 px-8 py-3 rounded-lg border border-slate-300 text-charcoal hover:bg-charcoal hover:text-white font-semibold transition-colors"
+            className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl border border-slate-300/50 text-charcoal hover:bg-surface-dark hover:text-white font-semibold transition-all duration-300 hover:shadow-lg"
           >
             مشاهده همه پروژه‌ها
-            <ArrowLeft className="h-4 w-4" />
+            <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
           </Link>
         </div>
       </Container>
