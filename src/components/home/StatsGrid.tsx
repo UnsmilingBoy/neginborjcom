@@ -38,13 +38,18 @@ const stats = [
 
 export function StatsGrid() {
   return (
-    <section className="relative py-24 bg-background overflow-hidden">
+    <section className="relative py-24 bg-surface-dark overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
-              <circle cx="1" cy="1" r="1" fill="#F59E0B" />
+            <pattern
+              id="dots"
+              width="24"
+              height="24"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle cx="1" cy="1" r="1" fill="var(--color-amber-brand)" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#dots)" />
@@ -77,10 +82,14 @@ export function StatsGrid() {
                 </div>
 
                 {/* Label */}
-                <p className="text-base font-semibold text-charcoal mb-2">{stat.label}</p>
+                <p className="text-base font-semibold text-charcoal mb-2">
+                  {stat.label}
+                </p>
 
                 {/* Description */}
-                <p className="text-sm text-slate-custom leading-relaxed">{stat.description}</p>
+                <p className="text-sm text-slate-custom leading-relaxed">
+                  {stat.description}
+                </p>
               </div>
             </motion.div>
           ))}

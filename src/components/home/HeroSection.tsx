@@ -60,7 +60,7 @@ export function HeroSection() {
       {/* ── Layered background ─────────────────────────── */}
       <div className="absolute inset-0">
         {/* Deep radial base */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,var(--color-surface-dark-2),transparent_55%),radial-gradient(ellipse_at_20%_90%,rgba(234,88,12,0.10),transparent_45%)]" />
+        <div className="absolute inset-0 bg-hero-glow" />
         <div className="absolute inset-0 bg-gradient-to-b from-surface-dark/40 via-transparent to-surface-dark" />
 
         {/* Rotating conic sheen */}
@@ -81,7 +81,7 @@ export function HeroSection() {
               <path
                 d="M 60 0 L 0 0 0 60"
                 fill="none"
-                stroke="#F59E0B"
+                stroke="var(--color-amber-brand)"
                 strokeWidth="0.5"
               />
             </pattern>
@@ -269,7 +269,7 @@ export function HeroSection() {
       </Container>
 
       {/* Bottom fade into next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-surface-dark to-transparent" />
     </section>
   );
 }
