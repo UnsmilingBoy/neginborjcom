@@ -62,14 +62,17 @@ export function StatsGrid() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative group"
             >
-              <div className="relative p-8 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover:border-amber-brand/30 transition-all duration-500 hover:shadow-xl hover:shadow-amber-brand/5">
+              <div className="relative overflow-hidden p-8 rounded-2xl border border-border/50 bg-card/60 backdrop-blur-sm hover:border-amber-brand/40 transition-all duration-500 hover:shadow-xl hover:shadow-amber-brand/10 hover:-translate-y-1">
+                {/* Top gradient accent */}
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-brand scale-x-0 group-hover:scale-x-100 origin-right transition-transform duration-500" />
+
                 {/* Icon */}
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-amber-brand/10 to-amber-brand/5 mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-amber-brand/15 to-copper/10 mb-6 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-amber-brand/20 transition-all duration-300">
                   <stat.icon className="h-7 w-7 text-amber-brand" />
                 </div>
 
                 {/* Number */}
-                <div className="text-4xl lg:text-5xl font-extrabold text-charcoal mb-2 tracking-tight">
+                <div className="text-4xl lg:text-5xl font-extrabold text-gradient-brand mb-2 tracking-tight">
                   <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                 </div>
 
@@ -78,9 +81,6 @@ export function StatsGrid() {
 
                 {/* Description */}
                 <p className="text-sm text-slate-custom leading-relaxed">{stat.description}</p>
-
-                {/* Hover accent line */}
-                <div className="absolute bottom-0 left-8 right-8 h-0.5 bg-gradient-to-r from-amber-brand/0 via-amber-brand to-amber-brand/0 scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
               </div>
             </motion.div>
           ))}

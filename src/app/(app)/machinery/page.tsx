@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Container } from "@/components/layout/Container";
-import { SectionHeader } from "@/components/SectionHeader";
+import { PageHero } from "@/components/PageHero";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
@@ -79,14 +79,16 @@ const machineryData = {
 
 export default function MachineryPage() {
   return (
-    <section className="py-16">
-      <Container>
-        <SectionHeader
-          title="ماشین‌آلات و تجهیزات"
-          subtitle="تجهیزات پیشرفته در دو کارخانه بشل و ساری"
-        />
+    <>
+      <PageHero
+        eyebrow="ماشین‌آلات"
+        title="ماشین‌آلات و تجهیزات"
+        subtitle="تجهیزات پیشرفته در دو کارخانه بشل و ساری"
+      />
 
-        <Tabs defaultValue="beshel" className="mt-12">
+      <section className="py-16">
+        <Container>
+          <Tabs defaultValue="beshel">
           <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
             <TabsTrigger value="beshel">کارخانه بشل</TabsTrigger>
             <TabsTrigger value="sari">کارخانه ساری</TabsTrigger>
@@ -139,7 +141,8 @@ export default function MachineryPage() {
             </TabsContent>
           ))}
         </Tabs>
-      </Container>
-    </section>
+        </Container>
+      </section>
+    </>
   );
 }

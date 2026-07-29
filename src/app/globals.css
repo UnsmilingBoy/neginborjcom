@@ -50,7 +50,10 @@
   --color-slate-custom: var(--text-muted);
   --color-amber-brand: #F59E0B;
   --color-amber-dark: #D97706;
+  --color-amber-light: #FCD34D;
+  --color-copper: #EA580C;
   --color-surface-dark: var(--surface-dark);
+  --color-surface-dark-2: var(--surface-dark-2);
 }
 
 :root {
@@ -91,7 +94,8 @@
   /* Theme-aware custom tokens (light) */
   --text-charcoal: #0F172A;
   --text-muted: #475569;
-  --surface-dark: #0F172A;
+  --surface-dark: #0B1120;
+  --surface-dark-2: #14203A;
 }
 
 .dark {
@@ -131,7 +135,8 @@
   /* Theme-aware custom tokens (dark) */
   --text-charcoal: #F1F5F9;
   --text-muted: #94A3B8;
-  --surface-dark: #080E1A;
+  --surface-dark: #060B15;
+  --surface-dark-2: #101B30;
 }
 
 @layer base {
@@ -149,4 +154,80 @@
 .app-shell html {
   @apply font-sans;
   direction: rtl;
+}
+
+/* ── Rich brand utilities ─────────────────────────────── */
+@layer utilities {
+  /* Molten-metal gradient: gold → amber → copper */
+  .text-gradient-brand {
+    background-image: linear-gradient(
+      120deg,
+      var(--color-amber-light) 0%,
+      var(--color-amber-brand) 50%,
+      var(--color-copper) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .bg-gradient-brand {
+    background-image: linear-gradient(
+      120deg,
+      var(--color-amber-brand) 0%,
+      var(--color-copper) 100%
+    );
+  }
+  /* Animated conic sheen used behind hero elements */
+  .bg-sheen {
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      transparent 0deg,
+      rgba(245, 158, 11, 0.08) 90deg,
+      transparent 180deg,
+      rgba(234, 88, 12, 0.06) 270deg,
+      transparent 360deg
+    );
+  }
+}
+
+/* Ambient motion for glow orbs and decorative elements */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(24px, -32px, 0) scale(1.12);
+  }
+}
+@keyframes drift-reverse {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-28px, 26px, 0) scale(1.08);
+  }
+}
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-drift {
+  animation: drift 16s ease-in-out infinite;
+}
+.animate-drift-reverse {
+  animation: drift-reverse 20s ease-in-out infinite;
+}
+.animate-spin-slow {
+  animation: spin-slow 28s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-drift,
+  .animate-drift-reverse,
+  .animate-spin-slow {
+    animation: none;
+  }
 }

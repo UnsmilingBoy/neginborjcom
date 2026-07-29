@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Container } from "@/components/layout/Container";
-import { SectionHeader } from "@/components/SectionHeader";
+import { PageHero } from "@/components/PageHero";
 import { FilterTabs } from "@/components/projects/FilterTabs";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { motion } from "framer-motion";
@@ -99,14 +99,16 @@ export default function ProjectsPage() {
       : allProjects.filter((p) => p.category === activeCategory);
 
   return (
-    <section className="py-16">
-      <Container>
-        <SectionHeader
-          title="پروژه‌ها"
-          subtitle="نمایشگاه پروژه‌های اجرا شده توسط گروه صنعتی نگین برج قائم"
-        />
+    <>
+      <PageHero
+        eyebrow="پروژه‌ها"
+        title="پروژه‌ها"
+        subtitle="نمایشگاه پروژه‌های اجرا شده توسط گروه صنعتی نگین برج قائم"
+      />
 
-        <div className="mt-10 mb-10">
+      <section className="py-16">
+        <Container>
+          <div className="mb-10">
           <FilterTabs
             categories={categories}
             active={activeCategory}
@@ -139,7 +141,8 @@ export default function ProjectsPage() {
             </motion.div>
           ))}
         </motion.div>
-      </Container>
-    </section>
+        </Container>
+      </section>
+    </>
   );
 }

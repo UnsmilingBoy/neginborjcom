@@ -29,11 +29,12 @@ export default function HomePage() {
             </svg>
           </div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-brand/5 rounded-full blur-[150px]" />
+          <div className="animate-drift-reverse absolute bottom-0 left-1/4 w-[360px] h-[360px] bg-copper/10 rounded-full blur-[130px]" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-tight">
-            آماده همکاری با شما هستیم
+            آماده <span className="text-gradient-brand">همکاری</span> با شما هستیم
           </h2>
           <p className="text-lg sm:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
             برای دریافت مشاوره رایگان و پیش‌فاکتور، همین الان با ما تماس بگیرید
@@ -42,7 +43,7 @@ export default function HomePage() {
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href="/rfq"
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-amber-brand text-charcoal font-semibold hover:bg-amber-dark transition-all duration-300 shadow-lg shadow-amber-brand/20 hover:shadow-amber-brand/40 hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-brand text-white font-semibold transition-all duration-300 shadow-lg shadow-copper/25 hover:shadow-xl hover:shadow-copper/40 hover:-translate-y-0.5"
             >
               درخواست پیش‌فاکتور
               <svg

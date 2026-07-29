@@ -60,11 +60,14 @@ export function ServicesGrid() {
             >
               <Link
                 href={service.href}
-                className="group relative block h-full p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-xl hover:shadow-amber-brand/5 hover:border-amber-brand/30 transition-all duration-500"
+                className="group relative block h-full overflow-hidden p-6 rounded-2xl border border-border/50 bg-card/60 backdrop-blur-sm hover:shadow-xl hover:shadow-amber-brand/10 hover:border-amber-brand/40 hover:-translate-y-1 transition-all duration-500"
               >
+                {/* Top gradient accent */}
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-brand scale-x-0 group-hover:scale-x-100 origin-right transition-transform duration-500" />
+
                 {/* Icon container */}
                 <div className="relative mb-6">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-brand/10 to-amber-brand/5 group-hover:from-amber-brand/20 group-hover:to-amber-brand/10 transition-all duration-300">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-brand/15 to-copper/10 group-hover:from-amber-brand/25 group-hover:to-copper/20 group-hover:shadow-lg group-hover:shadow-amber-brand/20 transition-all duration-300">
                     <Image
                       src={service.icon}
                       alt={service.title}
@@ -74,7 +77,7 @@ export function ServicesGrid() {
                     />
                   </div>
                   {/* Corner accent */}
-                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-amber-brand rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-brand rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
                 {/* Content */}
