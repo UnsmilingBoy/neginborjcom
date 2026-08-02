@@ -8,6 +8,7 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { Container } from "./Container";
+import Image from "next/image";
 
 const navLinks = [
   { href: "/", label: "خانه" },
@@ -35,6 +36,26 @@ const mobileItemVariants: Variants = {
   },
 };
 
+function LogoMark({ className }: { className?: string }) {
+  return (
+    <span
+      className={cn(
+        "relative block overflow-hidden rounded-lg border border-white/10 bg-surface-dark/70 shadow-md shadow-black/20",
+        className,
+      )}
+    >
+      <Image
+        src="/weirdlogo2.png"
+        alt="Negin Borj Qaem Logo"
+        width={120}
+        height={120}
+        priority
+        className="absolute left-1/2 top-1/2 h-[170%] w-[170%] max-w-none -translate-x-1/2 -translate-y-[40%] object-contain"
+      />
+    </span>
+  );
+}
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -53,26 +74,26 @@ export function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
-      className="fixed inset-x-0 top-4 z-50 flex justify-center px-4"
+      className="fixed inset-x-0 top-2 z-50 flex justify-center px-3 sm:top-4 sm:px-4"
     >
       <div
         className={cn(
-          "w-full max-w-5xl rounded-2xl border transition-all duration-500",
+          "w-full max-w-5xl rounded-xl border transition-all duration-500 sm:rounded-2xl",
           scrolled ?
             "border-white/10 bg-surface-dark/80 shadow-xl shadow-black/30 backdrop-blur-xl"
           : "border-white/5 bg-surface-dark/40 shadow-lg shadow-black/10 backdrop-blur-lg",
         )}
       >
         <Container>
-          <div className="flex h-16 items-center justify-between">
+          <div className="flex h-12 items-center justify-between sm:h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3">
               <motion.div
                 whileHover={{ rotate: 6, scale: 1.06 }}
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-brand text-charcoal font-bold text-xl shadow-md shadow-amber-brand/20"
+                className="shrink-0"
               >
-                N
+                <LogoMark className="h-9 w-9 sm:h-11 sm:w-11 sm:rounded-xl" />
               </motion.div>
               <div className="hidden sm:block">
                 <p className="text-sm font-bold text-white leading-tight">
@@ -142,7 +163,7 @@ export function Navbar() {
               <Sheet open={open} onOpenChange={setOpen}>
                 <SheetTrigger
                   render={
-                    <button className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-full text-white hover:bg-white/5 transition-colors">
+                    <button className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/5 md:hidden sm:h-9 sm:w-9 sm:rounded-full">
                       <AnimatePresence mode="wait" initial={false}>
                         {open ?
                           <motion.span
@@ -170,14 +191,40 @@ export function Navbar() {
                 />
                 <SheetContent
                   side="right"
-                  className="w-72 rounded-l-3xl border-l border-white/10 bg-surface-dark/95 backdrop-blur-xl"
+                  showCloseButton={false}
+                  className="w-[86vw] max-w-80 border-l border-white/10 bg-surface-dark/95 p-0 backdrop-blur-xl sm:w-72 sm:rounded-l-3xl"
                 >
                   <motion.div
                     variants={mobileContainerVariants}
                     initial="hidden"
                     animate={open ? "visible" : "hidden"}
-                    className="flex flex-col gap-4 mt-8"
+                    className="flex h-full flex-col gap-2 px-5 py-6"
                   >
+                    <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-5">
+                      <Link
+                        href="/"
+                        onClick={() => setOpen(false)}
+                        className="flex items-center gap-3"
+                      >
+                        <LogoMark className="h-10 w-10" />
+                        <span>
+                          <span className="block text-sm font-bold text-white">
+                            نگین برج قائم
+                          </span>
+                          <span className="block text-xs text-slate-400">
+                            گروه صنعتی
+                          </span>
+                        </span>
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() => setOpen(false)}
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+                        aria-label="Close menu"
+                      >
+                        <X className="h-5 w-5" />
+                      </button>
+                    </div>
                     {navLinks.map((link) => {
                       const isActive = pathname === link.href;
                       return (
@@ -189,10 +236,10 @@ export function Navbar() {
                             href={link.href}
                             onClick={() => setOpen(false)}
                             className={cn(
-                              "block text-lg font-medium py-2 border-b border-slate-700/50 transition-colors",
-                              isActive ? "text-amber-brand" : (
-                                "text-slate-200 hover:text-amber-brand"
-                              ),
+                              "block rounded-xl px-4 py-3 text-base font-semibold transition-colors",
+                              isActive ?
+                                "bg-amber-brand/10 text-amber-brand"
+                              : "text-slate-200 hover:bg-white/5 hover:text-amber-brand",
                             )}
                           >
                             {link.label}
@@ -204,7 +251,7 @@ export function Navbar() {
                       <Link
                         href="/rfq"
                         onClick={() => setOpen(false)}
-                        className="mt-4 inline-flex w-full items-center justify-center gap-2 px-4 py-2 rounded-lg bg-amber-brand text-charcoal hover:bg-amber-dark font-semibold transition-colors"
+                        className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-amber-brand px-4 py-3 font-semibold text-charcoal transition-colors hover:bg-amber-dark"
                       >
                         مشاوره رایگان
                       </Link>
