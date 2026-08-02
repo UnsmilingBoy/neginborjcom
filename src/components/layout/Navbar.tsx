@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowLeft } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { Container } from "./Container";
@@ -18,7 +18,7 @@ const navLinks = [
   { href: "/rfq", label: "درخواست پیش‌فاکتور" },
 ];
 
-const mobileContainerVariants = {
+const mobileContainerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -26,12 +26,12 @@ const mobileContainerVariants = {
   },
 };
 
-const mobileItemVariants = {
+const mobileItemVariants: Variants = {
   hidden: { opacity: 0, x: 24 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const },
   },
 };
 
@@ -52,7 +52,7 @@ export function Navbar() {
     <motion.header
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
       className="fixed inset-x-0 top-4 z-50 flex justify-center px-4"
     >
       <div
