@@ -3,6 +3,7 @@ import { Vazirmatn } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import "../globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
@@ -28,6 +29,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
