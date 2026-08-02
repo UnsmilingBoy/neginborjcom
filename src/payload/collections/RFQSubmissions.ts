@@ -56,7 +56,7 @@ export const RFQSubmissions: CollectionConfig = {
     {
       name: "blueprintFile",
       type: "upload",
-      relationTo: "media",
+      relationTo: "blueprint-files",
       label: "فایل نقشه",
     },
     {
