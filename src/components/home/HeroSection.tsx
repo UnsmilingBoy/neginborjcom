@@ -64,7 +64,7 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-surface-dark/40 via-transparent to-surface-dark" />
 
         {/* Rotating conic sheen */}
-        <div className="absolute top-1/2 left-1/2 h-[140vh] w-[140vh] -translate-x-1/2 -translate-y-1/2 bg-sheen animate-spin-slow opacity-70" />
+        <div className="absolute top-1/2 left-1/2 h-[140vh] w-[140vh] -translate-x-1/2 -translate-y-1/2 bg-sheen animate-spin-slow opacity-70 max-lg:hidden" />
 
         {/* Industrial grid */}
         <svg
@@ -94,8 +94,8 @@ export function HeroSection() {
         <div className="absolute top-0 right-[10%] h-full w-px bg-gradient-to-b from-transparent via-copper/20 to-transparent" />
 
         {/* Drifting glow orbs */}
-        <div className="animate-drift absolute top-1/4 right-1/4 h-[520px] w-[520px] rounded-full bg-amber-brand/10 blur-[150px]" />
-        <div className="animate-drift-reverse absolute bottom-[15%] left-1/4 h-[380px] w-[380px] rounded-full bg-copper/10 blur-[130px]" />
+        <div className="animate-drift absolute top-1/4 right-1/4 h-[520px] w-[520px] rounded-full bg-amber-brand/10 blur-[150px] max-lg:hidden" />
+        <div className="animate-drift-reverse absolute bottom-[15%] left-1/4 h-[380px] w-[380px] rounded-full bg-copper/10 blur-[130px] max-lg:hidden" />
       </div>
 
       <Container className="relative z-10">
@@ -103,8 +103,8 @@ export function HeroSection() {
           {/* ── Copy ─────────────────────────────────── */}
           <div>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.6 }}
             >
               <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-amber-brand/20 bg-amber-brand/10 px-5 py-2.5 backdrop-blur-sm">
@@ -119,8 +119,8 @@ export function HeroSection() {
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ y: 30 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
               className="mb-6 text-4xl font-extrabold leading-[1.2] text-white sm:text-5xl lg:text-6xl"
             >
@@ -132,8 +132,8 @@ export function HeroSection() {
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ y: 30 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               className="mb-10 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
@@ -143,8 +143,8 @@ export function HeroSection() {
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ y: 30 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
               className="flex flex-wrap gap-4"
             >
@@ -165,8 +165,8 @@ export function HeroSection() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
               className="mt-16 flex flex-wrap items-center gap-8 text-sm text-slate-500"
             >
@@ -183,8 +183,8 @@ export function HeroSection() {
 
           {/* ── Floating visual ──────────────────────── */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative mx-auto hidden aspect-square w-full max-w-md lg:block"
           >
@@ -194,8 +194,8 @@ export function HeroSection() {
 
             {/* Central hub */}
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ y: 12 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.6, delay: 1 }}
               className={`flex size-112.5 items-center justify-center`}
             >
@@ -207,13 +207,13 @@ export function HeroSection() {
                   ease: "easeInOut",
                 }}
               >
-                <Image
+                {/* <Image
                   className="w-full rounded-2xl"
                   src="/images/factory-test.jpg"
                   alt="Negin Borj"
                   width={450}
                   height={450}
-                />
+                /> */}
               </motion.div>
             </motion.div>
 
@@ -221,8 +221,8 @@ export function HeroSection() {
             {floatingChips.map((chip) => (
               <motion.div
                 key={chip.value}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ y: 12 }}
+                animate={{ y: 0 }}
                 transition={{ duration: 0.6, delay: chip.delay }}
                 className={`absolute ${chip.className} z-20`}
               >

@@ -198,7 +198,7 @@ export default function AboutPage() {
 
       {/* ── Stats band ───────────────────────────────────── */}
       <section className="relative overflow-hidden bg-surface-dark py-20">
-        <div className="absolute top-1/2 left-1/4 h-[300px] w-[300px] -translate-y-1/2 rounded-full bg-amber-brand/5 blur-[120px]" />
+        <div className="absolute top-1/2 left-1/4 h-[300px] w-[300px] -translate-y-1/2 rounded-full bg-amber-brand/5 blur-[120px] max-lg:hidden" />
         <Container className="relative z-10">
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
             {stats.map((stat, index) => (
@@ -337,7 +337,7 @@ export default function AboutPage() {
       {/* ── CTA ──────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-surface-dark py-20">
         <div className="absolute inset-0">
-          <div className="absolute bottom-0 left-1/3 h-[300px] w-[300px] rounded-full bg-amber-brand/5 blur-[120px]" />
+          <div className="absolute bottom-0 left-1/3 h-[300px] w-[300px] rounded-full bg-amber-brand/5 blur-[120px] max-lg:hidden" />
         </div>
         <Container className="relative z-10">
           <div className="mx-auto max-w-2xl text-center">

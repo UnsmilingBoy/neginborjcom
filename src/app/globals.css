@@ -208,3 +208,14 @@
     animation: none;
   }
 }
+
+/* Mobile perf: ambient decorative animations are GPU-heavy on small screens.
+   They are disabled below lg instead of hidden so any remaining instance just
+   sits static (cheap) rather than repainting every frame. */
+@media (max-width: 1024px) {
+  .animate-drift,
+  .animate-drift-reverse,
+  .animate-spin-slow {
+    animation: none;
+  }
+}

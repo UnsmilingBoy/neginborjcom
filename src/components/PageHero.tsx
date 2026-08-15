@@ -38,13 +38,13 @@ export function PageHero({ eyebrow, title, subtitle }: PageHeroProps) {
         </svg>
         <div className="absolute top-0 left-[12%] h-full w-px bg-gradient-to-b from-transparent via-amber-brand/20 to-transparent" />
         <div className="absolute top-0 right-[12%] h-full w-px bg-gradient-to-b from-transparent via-amber-brand/20 to-transparent" />
-        <div className="absolute top-1/4 right-1/4 h-[500px] w-[500px] rounded-full bg-amber-brand/5 blur-[150px]" />
+        <div className="absolute top-1/4 right-1/4 h-[500px] w-[500px] rounded-full bg-amber-brand/5 blur-[150px] max-lg:hidden" />
       </div>
 
       <Container className="relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
           transition={{ duration: 0.6 }}
           className="mx-auto max-w-3xl text-center"
         >

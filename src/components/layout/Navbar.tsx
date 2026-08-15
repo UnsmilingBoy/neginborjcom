@@ -31,7 +31,7 @@ const mobileItemVariants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
   },
 };
 
@@ -50,17 +50,17 @@ export function Navbar() {
 
   return (
     <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ y: -80 }}
+      animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-x-0 top-4 z-50 flex justify-center px-4"
     >
       <div
         className={cn(
-          "w-full max-w-5xl rounded-2xl border transition-all duration-500",
+          "w-full max-w-5xl rounded-2xl border transition-all duration-500 max-lg:backdrop-blur-none",
           scrolled ?
-            "border-white/10 bg-surface-dark/80 shadow-xl shadow-black/30 backdrop-blur-xl"
-          : "border-white/5 bg-surface-dark/40 shadow-lg shadow-black/10 backdrop-blur-lg",
+            "border-white/10 bg-surface-dark/80 shadow-xl shadow-black/30 backdrop-blur-xl max-lg:bg-surface-dark/95"
+          : "border-white/5 bg-surface-dark/40 shadow-lg shadow-black/10 backdrop-blur-lg max-lg:bg-surface-dark/90",
         )}
       >
         <Container>

@@ -28,8 +28,8 @@ export default function HomePage() {
               <rect width="100%" height="100%" fill="url(#cta-grid)" />
             </svg>
           </div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-brand/5 rounded-full blur-[150px]" />
-          <div className="animate-drift-reverse absolute bottom-0 left-1/4 w-[360px] h-[360px] bg-copper/10 rounded-full blur-[130px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-brand/5 rounded-full blur-[150px] max-lg:hidden" />
+          <div className="animate-drift-reverse absolute bottom-0 left-1/4 w-[360px] h-[360px] bg-copper/10 rounded-full blur-[130px] max-lg:hidden" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
