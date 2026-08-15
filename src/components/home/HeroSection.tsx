@@ -55,7 +55,7 @@ const floatingChips = [
 
 export function HeroSection() {
   return (
-    <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-surface-dark pb-12 pt-24 sm:pb-0 sm:pt-0">
+    <section className="relative flex min-h-[min(88vh,900px)] items-center overflow-hidden bg-surface-dark pb-16 pt-24 sm:pb-24 sm:pt-0">
       {/* ── Layered background ─────────────────────────── */}
       <div className="absolute inset-0">
         {/* Deep radial base */}
@@ -206,14 +206,14 @@ export function HeroSection() {
                   ease: "easeInOut",
                 }}
               >
-                {/* <Image
+                <Image
                   className="w-full rounded-2xl"
-                  // src="/images/factory-test.jpg"
-                  src="/weirdlogo2.png"
+                  src="/images/machinery/factory (6).jpg"
+                  // src="/weirdlogo2.png"
                   alt="Negin Borj"
                   width={450}
                   height={450}
-                /> */}
+                />
               </motion.div>
             </motion.div>
 
@@ -269,7 +269,7 @@ export function HeroSection() {
       </Container>
 
       {/* Bottom fade into next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-surface-dark to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-surface-dark to-transparent" />
     </section>
   );
 }

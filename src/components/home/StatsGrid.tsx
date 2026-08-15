@@ -38,7 +38,7 @@ const stats = [
 
 export function StatsGrid() {
   return (
-    <section className="relative overflow-hidden bg-surface-dark py-12 sm:py-24">
+    <section className="relative overflow-hidden bg-surface-dark py-16 sm:py-24">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">

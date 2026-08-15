@@ -52,7 +52,7 @@ const categoryLabels: Record<string, string> = {
 
 export function FeaturedProjects() {
   return (
-    <section className="relative py-24 bg-muted/20 overflow-hidden">
+    <section className="relative py-16 sm:py-24 bg-muted/20 overflow-hidden">
       {/* Background decoration */}
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-amber-brand/3 to-transparent" />
 

@@ -1,103 +1,207 @@
+// components/sections/FactoryShowcase.tsx
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
+import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { SectionHeader } from "@/components/SectionHeader";
-import Image from "next/image";
-import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
 
-const services = [
-  {
-    title: "اسکلت فلزی سنگین",
-    description:
-      "ساخت و نصب اسکلت‌های فلزی سنگین برای ساختمان‌های بلندمرتبه و صنعتی با استانداردهای بین‌المللی.",
-    icon: "/images/icons/skeleton.svg",
-    href: "/services/skeleton",
-  },
-  {
-    title: "سوله صنعتی",
-    description:
-      "طراحی و اجرای سوله‌های صنعتی با دهانه‌های بزرگ و ظرفیت‌های بالا برای کاربردهای متنوع.",
-    icon: "/images/icons/suleh.svg",
-    href: "/services/suleh",
-  },
-  {
-    title: "پل‌های فلزی",
-    description:
-      "ساخت پل‌های فلزی خودروبر و پیاده‌رو با مقاومت بالا و طول عمر مفید بیش از ۵۰ سال.",
-    icon: "/images/icons/bridge.svg",
-    href: "/services/bridge",
-  },
-  {
-    title: "سازه‌های پالایشگاهی",
-    description:
-      "ساخت و نصب سازه‌های تخصصی پالایشگاه و پتروشیمی با رعایت کلیه استانداردهای ایمنی.",
-    icon: "/images/icons/refinery.svg",
-    href: "/services/refinery",
-  },
+const captions = [
+  "برش CNC ورق فولاد",
+  "خط جوشکاری اسکلت اصلی",
+  "مونتاژ ستون و تیر فلزی",
+  "کنترل ابعاد و تراز سازه",
+  "ساخت خرپای سوله صنعتی",
+  "جوشکاری اتصالات سوله",
+  "سندبلاست سطح فولاد",
+  "رنگ‌آمیزی صنعتی سازه",
+  "ساخت عرشه پل فلزی",
+  "مونتاژ تیرهای اصلی پل",
+  "تست بار و مقاومت سازه",
+  "ساخت سازه اختصاصی پالایشگاه",
+  "جوشکاری مخازن و لوله‌کشی",
+  "بازرسی جوش با اولتراسونیک",
+  "جابجایی با جرثقیل سقفی ۵۰ تنی",
+  "انبار مواد اولیه فولادی",
+  "برش و خم ورق‌های ضخیم",
+  "مونتاژ نهایی در کارگاه",
+  "بارگیری برای اعزام به سایت",
+  "نصب سازه در محل پروژه",
 ];
 
-export function ServicesGrid() {
+const frames = captions.map((label, i) => ({
+  index: i + 1,
+  label,
+  src: `/images/machinery/factory (${i + 1}).jpg`,
+}));
+
+function toPersianDigits(value: number | string) {
+  const digits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+  return String(value).replace(/[0-9]/g, (d) => digits[Number(d)]);
+}
+
+function FilmstripCard({
+  src,
+  label,
+  index,
+  total,
+  scrollYProgress,
+}: {
+  src: string;
+  label: string;
+  index: number;
+  total: number;
+  scrollYProgress: MotionValue<number>;
+}) {
+  const start = (index - 1) / total;
+  const center = (index - 0.5) / total;
+  const end = index / total;
+
+  const scale = useTransform(scrollYProgress, [start, center, end], [0.86, 1, 0.86]);
+  const opacity = useTransform(scrollYProgress, [start, center, end], [0.45, 1, 0.45]);
+  const gray = useTransform(scrollYProgress, [start, center, end], [1, 0, 1]);
+  const filter = useMotionTemplate`grayscale(${gray})`;
+
   return (
-    <section className="relative py-24 bg-muted/20 overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-amber-brand/3 to-transparent" />
+    
+    <motion.div
+      style={{ scale, filter }}
+      className="relative shrink-0 h-[52vh] sm:h-[58vh] lg:h-[64vh] max-h-[32rem] sm:max-h-[38rem] lg:max-h-[45rem] aspect-[4/5] overflow-hidden rounded-sm border border-border/40 will-change-transform"
+    >
+      <Image
+        src={src}
+        alt={label}
+        fill
+        priority={index <= 3}
+        sizes="(max-width: 640px) 60vw, (max-width: 1024px) 45vw, 35vw"
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/10 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 md:p-5">
+        <span dir="rtl" className="text-sm md:text-base font-medium text-white">
+          {label}
+        </span>
+        <span className="shrink-0 text-xs font-semibold tabular-nums text-amber-brand">
+          {toPersianDigits(String(index).padStart(2, "0"))}
+        </span>
+      </div>
+    </motion.div>
+  );
+}
 
-      <Container className="relative">
-        <SectionHeader
-          title="خدمات ما"
-          subtitle="با بیش از دو دهه تجربه، خدمات جامع صنعت فولاد را ارائه می‌دهیم"
-        />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Link
-                href={service.href}
-                className="group relative block h-full overflow-hidden p-6 rounded-2xl border border-border/50 bg-card/60 backdrop-blur-sm hover:shadow-xl hover:shadow-amber-brand/10 hover:border-amber-brand/40 hover:-translate-y-1 transition-all duration-500"
-              >
-                {/* Top gradient accent */}
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-brand scale-x-0 group-hover:scale-x-100 origin-right transition-transform duration-500" />
-
-                {/* Icon container */}
-                <div className="relative mb-6">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-brand/15 to-copper/10 group-hover:from-amber-brand/25 group-hover:to-copper/20 group-hover:shadow-lg group-hover:shadow-amber-brand/20 transition-all duration-300">
-                    <Image
-                      src={service.icon}
-                      alt={service.title}
-                      width={32}
-                      height={32}
-                      className="transition-transform duration-300 group-hover:scale-110"
-                    />
-                  </div>
-                  {/* Corner accent */}
-                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-brand rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-
-                {/* Content */}
-                <h3 className="text-lg font-bold text-charcoal mb-3 group-hover:text-amber-brand transition-colors duration-300">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-slate-custom leading-relaxed mb-4">
-                  {service.description}
-                </p>
-
-                {/* Link indicator */}
-                <div className="flex items-center gap-2 text-sm font-medium text-amber-brand opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                  <span>بیشتر بخوانید</span>
-                  <ArrowLeft className="h-4 w-4" />
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+function StaticFactoryGrid() {
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+      {frames.map((f) => (
+        <div key={f.src} className="relative aspect-[4/5] overflow-hidden rounded-sm border border-border/40">
+          <Image src={f.src} alt={f.label} fill sizes="25vw" className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/10 to-transparent" />
+          <span dir="rtl" className="absolute inset-x-0 bottom-0 p-3 text-xs font-medium text-white">
+            {f.label}
+          </span>
         </div>
+      ))}
+    </div>
+  );
+}
+
+export function FactoryShowcase() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  const [distance, setDistance] = useState(0);
+  const [activeLabel, setActiveLabel] = useState(1);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    setActiveLabel(Math.min(frames.length, Math.max(1, Math.ceil(v * frames.length))));
+  });
+
+  useEffect(() => {
+    function measure() {
+      if (trackRef.current) {
+        setDistance(trackRef.current.scrollWidth - window.innerWidth);
+      }
+    }
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  const rawX = useTransform(scrollYProgress, [0, 1], [0, -Math.max(distance, 0)]);
+  const x = useSpring(rawX, { stiffness: 120, damping: 22, mass: 0.4 });
+  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  if (prefersReducedMotion) {
+    return (
+      <section className="relative bg-background py-16 sm:py-24">
+        <Container>
+          <SectionHeader
+            title="درون خط تولید"
+            subtitle="از برش ورق فولاد تا نصب سازه در محل پروژه؛ نگاهی به فرآیند ساخت در کارگاه نگین برج قائم"
+          />
+          <div className="mt-12">
+            <StaticFactoryGrid />
+          </div>
+        </Container>
+      </section>
+    );
+  }
+
+  return (
+    <section className="relative bg-background pb-16 sm:pb-24">
+      <Container className="pt-16 sm:pt-24">
+        <SectionHeader
+          title="درون خط تولید"
+          subtitle="از برش ورق فولاد تا نصب سازه در محل پروژه؛ نگاهی به فرآیند ساخت در کارگاه نگین برج قائم"
+        />
       </Container>
+
+      <div ref={sectionRef} style={{ height: `${frames.length * 18}vh` }} className="relative">
+        <div dir="ltr" className="sticky top-0 flex h-[min(100vh,56rem)] flex-col justify-center overflow-hidden">
+          <motion.div
+            ref={trackRef}
+            dir="ltr"
+            style={{ x }}
+            className="flex w-max items-center gap-5 pl-6 pr-[18vw] md:gap-7 md:pl-10 will-change-transform"
+          >
+            {frames.map((f) => (
+              <FilmstripCard key={f.src} {...f} total={frames.length} scrollYProgress={scrollYProgress} />
+            ))}
+          </motion.div>
+
+          <div className="absolute inset-x-0 bottom-8 md:bottom-10">
+            <Container>
+              <div className="flex items-center gap-6 text-xs text-slate-custom">
+                <span className="shrink-0 font-semibold tabular-nums text-amber-brand">
+                  {toPersianDigits(activeLabel)} / {toPersianDigits(frames.length)}
+                </span>
+                <div className="relative h-px flex-1 overflow-hidden bg-border/40">
+                  <motion.div style={{ width: progressWidth }} className="absolute inset-y-0 right-0 bg-gradient-brand" />
+                </div>
+                <span dir="rtl" className="hidden shrink-0 sm:inline">
+                  خط تولید نگین برج قائم
+                </span>
+              </div>
+            </Container>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
