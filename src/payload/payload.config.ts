@@ -10,6 +10,7 @@ import { RFQSubmissions } from "./collections/RFQSubmissions";
 import { JobApplications } from "./collections/JobApplications";
 import { Media } from "./collections/Media";
 import { ResumeFiles } from "./collections/ResumeFiles";
+import { BlueprintFiles } from "./collections/BlueprintFiles";
 
 export default buildConfig({
   admin: {
@@ -26,6 +27,7 @@ export default buildConfig({
     RFQSubmissions,
     JobApplications,
     ResumeFiles,
+    BlueprintFiles,
     Media,
   ],
   editor: lexicalEditor(),

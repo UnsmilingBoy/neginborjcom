@@ -10,7 +10,6 @@ import {
   Factory,
   Award,
   Users,
-  Layers,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -56,7 +55,7 @@ const floatingChips = [
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[92vh] flex items-center bg-surface-dark overflow-hidden">
+    <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-surface-dark pb-12 pt-24 sm:pb-0 sm:pt-0">
       {/* ── Layered background ─────────────────────────── */}
       <div className="absolute inset-0">
         {/* Deep radial base */}
@@ -99,7 +98,7 @@ export function HeroSection() {
       </div>
 
       <Container className="relative z-10">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid items-center gap-10 sm:gap-14 lg:grid-cols-[1.05fr_0.95fr]">
           {/* ── Copy ─────────────────────────────────── */}
           <div>
             <motion.div
@@ -107,12 +106,12 @@ export function HeroSection() {
               animate={{ y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-amber-brand/20 bg-amber-brand/10 px-5 py-2.5 backdrop-blur-sm">
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-brand/20 bg-amber-brand/10 px-4 py-2 backdrop-blur-sm sm:mb-8 sm:gap-3 sm:px-5 sm:py-2.5">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-brand opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-brand" />
                 </span>
-                <span className="text-sm font-medium tracking-wide text-amber-brand">
+                <span className="text-xs font-medium tracking-wide text-amber-brand sm:text-sm">
                   بیش از ۲۰ سال تجربه در صنعت فولاد
                 </span>
               </div>
@@ -122,7 +121,7 @@ export function HeroSection() {
               initial={{ y: 30 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="mb-6 text-4xl font-extrabold leading-[1.2] text-white sm:text-5xl lg:text-6xl"
+              className="mb-5 text-3xl font-extrabold leading-[1.25] text-white sm:mb-6 sm:text-5xl sm:leading-[1.2] lg:text-6xl"
             >
               گروه صنعتی{" "}
               <span className="relative inline-block">
@@ -135,7 +134,7 @@ export function HeroSection() {
               initial={{ y: 30 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="mb-10 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
+              className="mb-7 max-w-2xl text-base leading-relaxed text-slate-400 sm:mb-10 sm:text-xl"
             >
               ساخت و نصب اسکلت فلزی سنگین، سوله صنعتی، پل‌های فلزی و سازه‌های
               پالایشگاهی با بیش از ۶۰,۰۰۰ تن تولید و ۱۵۰+ پروژه موفق در سراسر
@@ -146,18 +145,18 @@ export function HeroSection() {
               initial={{ y: 30 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4"
             >
               <Link
                 href="/rfq"
-                className="group inline-flex items-center gap-3 rounded-xl bg-gradient-brand px-8 py-4 text-base font-semibold text-white shadow-lg shadow-copper/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-copper/40"
+                className="group inline-flex items-center justify-center gap-3 rounded-xl bg-gradient-brand px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-copper/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-copper/40 sm:px-8 sm:py-4 sm:text-base"
               >
                 درخواست پیش‌فاکتور
                 <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
               </Link>
               <Link
                 href="/projects"
-                className="group inline-flex items-center gap-3 rounded-xl border border-slate-600/50 px-8 py-4 text-base font-semibold text-slate-300 backdrop-blur-sm transition-all duration-300 hover:border-slate-500 hover:bg-white/5"
+                className="group inline-flex items-center justify-center gap-3 rounded-xl border border-slate-600/50 px-6 py-3.5 text-sm font-semibold text-slate-300 backdrop-blur-sm transition-all duration-300 hover:border-slate-500 hover:bg-white/5 sm:px-8 sm:py-4 sm:text-base"
               >
                 مشاهده پروژه‌ها
                 <ArrowLeft className="-ml-2 h-4 w-4 opacity-0 transition-all group-hover:ml-0 group-hover:opacity-100" />
@@ -168,13 +167,13 @@ export function HeroSection() {
               initial={{ y: 20 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
-              className="mt-16 flex flex-wrap items-center gap-8 text-sm text-slate-500"
+              className="mt-8 grid grid-cols-3 gap-3 text-xs text-slate-500 sm:mt-16 sm:flex sm:flex-wrap sm:items-center sm:gap-8 sm:text-sm"
             >
               {["۶۰,۰۰۰+ تن تولید", "۱۵۰+ پروژه موفق", "۴۵۰+ نفر پرسنل"].map(
                 (item) => (
                   <div key={item} className="flex items-center gap-2">
-                    <div className="h-8 w-px bg-gradient-to-b from-amber-brand/60 to-transparent" />
-                    <span>{item}</span>
+                    <div className="h-6 w-px bg-gradient-to-b from-amber-brand/60 to-transparent sm:h-8" />
+                    <span className="leading-relaxed">{item}</span>
                   </div>
                 ),
               )}
@@ -209,7 +208,8 @@ export function HeroSection() {
               >
                 {/* <Image
                   className="w-full rounded-2xl"
-                  src="/images/factory-test.jpg"
+                  // src="/images/factory-test.jpg"
+                  src="/weirdlogo2.png"
                   alt="Negin Borj"
                   width={450}
                   height={450}
