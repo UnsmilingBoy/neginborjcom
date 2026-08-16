@@ -55,7 +55,7 @@ const floatingChips = [
 
 export function HeroSection() {
   return (
-    <section className="relative flex min-h-[min(88vh,900px)] items-center overflow-hidden bg-surface-dark pb-16 pt-24 sm:pb-24 sm:pt-0">
+    <section className="relative flex min-h-[min(88vh,900px)] items-center overflow-hidden bg-surface-dark pb-16 pt-24 sm:pb-24 sm:pt-48">
       {/* ── Layered background ─────────────────────────── */}
       <div className="absolute inset-0">
         {/* Deep radial base */}
